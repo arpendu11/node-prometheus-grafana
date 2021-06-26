@@ -17,6 +17,7 @@
   "author": "Arpendu Kumar Garai",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "prom-client": "^12.0.0"
   }
 }

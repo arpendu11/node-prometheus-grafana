@@ -1,4 +1,3 @@
-const url = require('url');
 const client = require('prom-client');
 const express = require('express');
 const app = express();
@@ -60,7 +59,7 @@ const createDelayHandler = async (req, res) => {
 app.get('/metrics', async (req, res) => {
   // Start the timer
   const end = httpRequestDurationMicroseconds.startTimer();
-  const route = url.parse(req.url).pathname;
+  const route = req.route.path;
 
   res.setHeader('Content-Type', register.contentType);
   res.send(await register.metrics());
@@ -72,7 +71,7 @@ app.get('/metrics', async (req, res) => {
 app.get('/slow', async (req, res) => {
   // Start the timer
   const end = httpRequestDurationMicroseconds.startTimer();
-  const route = url.parse(req.url).pathname;
+  const route = req.route.path;
 
   await createDelayHandler(req, res);
 
